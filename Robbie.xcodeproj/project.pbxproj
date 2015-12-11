@@ -14,6 +14,7 @@
 		D45EC5501C19F9F600D59277 /* RobbieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */; };
 		D4AFC96F1C1B48A0007A2F9D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */; };
 		D4AFC9711C1B6BF4007A2F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */; };
+		D4AFC9731C1B7245007A2F9D /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFC9721C1B7245007A2F9D /* FoodList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobbieTableViewController.swift; sourceTree = "<group>"; };
 		D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D4AFC9721C1B7245007A2F9D /* FoodList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */,
 				D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */,
 				D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */,
+				D4AFC9721C1B7245007A2F9D /* FoodList.swift */,
 			);
 			path = Robbie;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 				D45EC54C1C19F8A900D59277 /* Food.swift in Sources */,
 				D45EC5501C19F9F600D59277 /* RobbieTableViewController.swift in Sources */,
 				D4AFC96F1C1B48A0007A2F9D /* DetailViewController.swift in Sources */,
+				D4AFC9731C1B7245007A2F9D /* FoodList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

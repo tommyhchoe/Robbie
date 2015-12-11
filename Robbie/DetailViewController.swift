@@ -9,14 +9,14 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
-    var titleToDisplay = ""
+    var descriptionToDisplay = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.titleLabel.text = titleToDisplay
+        self.descriptionLabel.text = descriptionToDisplay
         
         // Do any additional setup after loading the view.
     }

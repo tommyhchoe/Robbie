@@ -11,4 +11,5 @@ import Foundation
 struct Food{
     let category : String
     let name : String
+    let description: String
 }

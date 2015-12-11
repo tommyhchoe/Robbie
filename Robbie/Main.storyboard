@@ -62,8 +62,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEm-CH-tKy">
-                                <rect key="frame" x="279" y="289" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEm-CH-tKy">
+                                <rect key="frame" x="50" y="289" width="500" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -73,12 +73,14 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rEm-CH-tKy" secondAttribute="trailing" constant="50" id="HwH-SP-qwe"/>
                             <constraint firstItem="rEm-CH-tKy" firstAttribute="centerY" secondItem="FwV-Eh-yI4" secondAttribute="centerY" id="Zcu-8I-Pzq"/>
                             <constraint firstItem="rEm-CH-tKy" firstAttribute="centerX" secondItem="FwV-Eh-yI4" secondAttribute="centerX" id="ZlS-op-Low"/>
+                            <constraint firstItem="rEm-CH-tKy" firstAttribute="leading" secondItem="FwV-Eh-yI4" secondAttribute="leading" constant="50" id="wdc-1Y-Bxz"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="titleLabel" destination="rEm-CH-tKy" id="dPL-PD-zEe"/>
+                        <outlet property="descriptionLabel" destination="rEm-CH-tKy" id="hEb-pX-2JO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v8A-Wv-wJk" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,32 +10,22 @@ import UIKit
 
 class RobbieTableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var foodList = [Food]()
-    var filteredContents = [Food]()
+    var foodList: FoodList?
     var resultSearchController = UISearchController()
-    
-    var userSearch: String?
+    var index: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.foodList = FoodList()
+        
+        self.tableView.reloadData()
         
         self.resultSearchController = UISearchController(searchResultsController: nil)
         self.resultSearchController.searchResultsUpdater = self
         self.resultSearchController.dimsBackgroundDuringPresentation = false
         self.resultSearchController.searchBar.sizeToFit()
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
-        
-        self.tableView.reloadData()
-
-        self.foodList = [Food(category:"Chocolate", name:"chocolate Bar"),
-                    Food(category:"Chocolate", name:"chocolate Chip"),
-                    Food(category:"Chocolate", name:"dark chocolate"),
-                    Food(category:"Hard", name:"lollipop"),
-                    Food(category:"Hard", name:"candy cane"),
-                    Food(category:"Hard", name:"jaw breaker"),
-                    Food(category:"Other", name:"caramel"),
-                    Food(category:"Other", name:"sour chew"),
-                    Food(category:"Other", name:"gummi bear")]
         
         self.tableView.reloadData()
     }
@@ -55,9 +45,9 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if self.resultSearchController.active{
-            return self.filteredContents.count
+            return self.foodList!.filteredContents.count
         } else{
-            return self.foodList.count
+            return self.foodList!.foodList.count
         }
     }
     
@@ -65,17 +55,17 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell?
         
         if self.resultSearchController.active{
-            let content: Food = self.filteredContents[indexPath.row] as Food
+            let content: Food = self.foodList!.filteredContents[indexPath.row] as Food
             cell!.textLabel?.text = content.name
         }else {
-            let content: Food = self.foodList[indexPath.row] as Food
+            let content: Food = self.foodList!.foodList[indexPath.row] as Food
             cell!.textLabel?.text = content.name
         }
         return cell!
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        self.filteredContents = self.foodList.filter{
+        self.foodList!.filteredContents = self.foodList!.foodList.filter{
             (food) in
             let userSearch = searchController.searchBar.text!.lowercaseString
             if food.category.lowercaseString.containsString(userSearch){
@@ -89,10 +79,16 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.tableView.reloadData()
     }
     
+    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        self.index = indexPath.row
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailSegue" {
             if let dvc = segue.destinationViewController as? DetailViewController{
-                dvc.title = "Some Title"
+                dvc.title = sender!.textLabel!!.text
+                // TODO: index does not work when searching for an item.
+                dvc.descriptionToDisplay = (self.foodList!.foodList[index!] as Food).description
             }
         }
     }
