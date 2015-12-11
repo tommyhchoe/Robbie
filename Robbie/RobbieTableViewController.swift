@@ -8,11 +8,13 @@
 
 import UIKit
 
-class RobbieTableTableViewController: UITableViewController, UISearchResultsUpdating {
+class RobbieTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var foodList = [Food]()
     var filteredContents = [Food]()
     var resultSearchController = UISearchController()
+    
+    var userSearch: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,14 +77,24 @@ class RobbieTableTableViewController: UITableViewController, UISearchResultsUpda
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.filteredContents = self.foodList.filter{
             (food) in
-            if food.name.lowercaseString.containsString(searchController.searchBar.text!.lowercaseString){
+            let userSearch = searchController.searchBar.text!.lowercaseString
+            if food.category.lowercaseString.containsString(userSearch){
+                return true
+            }else if food.name.lowercaseString.containsString(userSearch){
                 return true
             } else{
                 return false
             }
         }
-        print(self.filteredContents)
         self.tableView.reloadData()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetailSegue" {
+            if let dvc = segue.destinationViewController as? DetailViewController{
+                dvc.title = "Some Title"
+            }
+        }
     }
 }
 

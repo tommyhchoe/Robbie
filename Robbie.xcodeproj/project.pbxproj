@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		D45EC53A1C19F73700D59277 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EC5391C19F73700D59277 /* AppDelegate.swift */; };
-		D45EC53F1C19F73700D59277 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45EC53D1C19F73700D59277 /* Main.storyboard */; };
 		D45EC5411C19F73800D59277 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D45EC5401C19F73800D59277 /* Assets.xcassets */; };
 		D45EC5441C19F73800D59277 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45EC5421C19F73800D59277 /* LaunchScreen.storyboard */; };
 		D45EC54C1C19F8A900D59277 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EC54B1C19F8A900D59277 /* Food.swift */; };
-		D45EC5501C19F9F600D59277 /* RobbieTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EC54F1C19F9F600D59277 /* RobbieTableTableViewController.swift */; };
+		D45EC5501C19F9F600D59277 /* RobbieTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */; };
+		D4AFC96F1C1B48A0007A2F9D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */; };
+		D4AFC9711C1B6BF4007A2F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D45EC5361C19F73700D59277 /* Robbie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Robbie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45EC5391C19F73700D59277 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D45EC53E1C19F73700D59277 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D45EC5401C19F73800D59277 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D45EC5431C19F73800D59277 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D45EC5451C19F73800D59277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D45EC54B1C19F8A900D59277 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
-		D45EC54F1C19F9F600D59277 /* RobbieTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobbieTableTableViewController.swift; sourceTree = "<group>"; };
+		D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobbieTableViewController.swift; sourceTree = "<group>"; };
+		D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				D45EC5391C19F73700D59277 /* AppDelegate.swift */,
-				D45EC53D1C19F73700D59277 /* Main.storyboard */,
 				D45EC5401C19F73800D59277 /* Assets.xcassets */,
 				D45EC5421C19F73800D59277 /* LaunchScreen.storyboard */,
 				D45EC5451C19F73800D59277 /* Info.plist */,
 				D45EC54B1C19F8A900D59277 /* Food.swift */,
-				D45EC54F1C19F9F600D59277 /* RobbieTableTableViewController.swift */,
+				D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */,
+				D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */,
+				D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */,
 			);
 			path = Robbie;
 			sourceTree = "<group>";
@@ -126,9 +129,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4AFC9711C1B6BF4007A2F9D /* Main.storyboard in Resources */,
 				D45EC5441C19F73800D59277 /* LaunchScreen.storyboard in Resources */,
 				D45EC5411C19F73800D59277 /* Assets.xcassets in Resources */,
-				D45EC53F1C19F73700D59277 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,21 +144,14 @@
 			files = (
 				D45EC53A1C19F73700D59277 /* AppDelegate.swift in Sources */,
 				D45EC54C1C19F8A900D59277 /* Food.swift in Sources */,
-				D45EC5501C19F9F600D59277 /* RobbieTableTableViewController.swift in Sources */,
+				D45EC5501C19F9F600D59277 /* RobbieTableViewController.swift in Sources */,
+				D4AFC96F1C1B48A0007A2F9D /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D45EC53D1C19F73700D59277 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D45EC53E1C19F73700D59277 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D45EC5421C19F73800D59277 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,6 +287,7 @@
 				D45EC54A1C19F73800D59277 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
