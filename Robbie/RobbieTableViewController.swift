@@ -103,8 +103,11 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         if segue.identifier == "showDetailSegue" {
             if let dvc = segue.destinationViewController as? DetailViewController{
                 dvc.title = sender!.textLabel!!.text
-                // TODO: index does not work when searching for an item.
-                dvc.descriptionToDisplay = (self.foodList!.foodList[index!] as Food).description
+                if self.resultSearchController.active{
+                    dvc.descriptionToDisplay = (self.foodList!.filteredContents[index!] as Food).description
+                } else{
+                    dvc.descriptionToDisplay = (self.foodList!.foodList[index!] as Food).description
+                }
             }
         }
     }
