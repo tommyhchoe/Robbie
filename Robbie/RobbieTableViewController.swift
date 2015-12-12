@@ -25,7 +25,16 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.resultSearchController.searchResultsUpdater = self
         self.resultSearchController.dimsBackgroundDuringPresentation = false
         self.resultSearchController.searchBar.sizeToFit()
+        self.resultSearchController.searchBar.placeholder = "Search for Food"
+        let defaultColor = UIColor.init(red: 255/255, green: 153/255, blue: 51/255, alpha: 1)
+        self.resultSearchController.searchBar.barTintColor = defaultColor
+        let whiteColor = UIColor.whiteColor()
+        self.resultSearchController.searchBar.tintColor = whiteColor
+        self.navigationController!.navigationBar.barTintColor = defaultColor
+        self.navigationController!.navigationBar.tintColor = whiteColor
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: whiteColor]
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         self.tableView.reloadData()
     }
@@ -54,9 +63,12 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell?
         
+        cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
         if self.resultSearchController.active{
             let content: Food = self.foodList!.filteredContents[indexPath.row] as Food
             cell!.textLabel?.text = content.name
+            cell!.detailTextLabel?.text = content.description
         }else {
             let content: Food = self.foodList!.foodList[indexPath.row] as Food
             cell!.textLabel?.text = content.name
@@ -81,6 +93,10 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
     
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         self.index = indexPath.row
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.resultSearchController.active = false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
