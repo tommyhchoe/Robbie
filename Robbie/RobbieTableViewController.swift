@@ -28,7 +28,7 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.resultSearchController.searchBar.sizeToFit()
         self.resultSearchController.searchBar.placeholder = "Search for Food"
         let defaultColor = UIColor.init(red: 255/255, green: 153/255, blue: 51/255, alpha: 1)
-        self.resultSearchController.searchBar.barTintColor = defaultColor
+        self.resultSearchController.searchBar.barTintColor = UIColor.lightGrayColor()
         let whiteColor = UIColor.whiteColor()
         self.resultSearchController.searchBar.tintColor = whiteColor
         
@@ -38,7 +38,7 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: whiteColor]
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: nil)
+        let rightBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("addNewFoodItem"))
         self.navigationItem.rightBarButtonItem = rightBarButton
         //TODO: Set the rightBarButtonItem title
         
@@ -82,6 +82,23 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         return cell!
     }
     
+    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        self.index = indexPath.row
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.resultSearchController.active = false
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete{
+            foodList!.foodList.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
+    // MARK: - SearchResultsControllers
+    
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         self.foodList!.filteredContents = self.foodList!.foodList.filter{
             (food) in
@@ -97,13 +114,7 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.tableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        self.index = indexPath.row
-    }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.resultSearchController.active = false
-    }
+    //MARK: - Action methods
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailSegue" {
@@ -116,6 +127,13 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
                 }
             }
         }
+    }
+    
+    func addNewFoodItem(){
+        print("Adding new food item")
+        let food = Food(category: "something", name: "new", description: "blah blah")
+        foodList!.foodList.append(food)
+        self.tableView.reloadData()
     }
 }
 
