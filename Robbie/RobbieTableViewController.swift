@@ -21,6 +21,7 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         
         self.tableView.reloadData()
         
+        //setup ResultSearchController
         self.resultSearchController = UISearchController(searchResultsController: nil)
         self.resultSearchController.searchResultsUpdater = self
         self.resultSearchController.dimsBackgroundDuringPresentation = false
@@ -30,11 +31,16 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.resultSearchController.searchBar.barTintColor = defaultColor
         let whiteColor = UIColor.whiteColor()
         self.resultSearchController.searchBar.tintColor = whiteColor
+        
+        //setup UINavigationController
         self.navigationController!.navigationBar.barTintColor = defaultColor
         self.navigationController!.navigationBar.tintColor = whiteColor
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: whiteColor]
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        //TODO: Set the rightBarButtonItem title
         
         self.tableView.reloadData()
     }

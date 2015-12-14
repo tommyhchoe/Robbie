@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--What does Robbie like to eat?-->
+        <!--Robbie's food list-->
         <scene sceneID="F8x-S3-76l">
             <objects>
                 <tableViewController id="DQH-uo-l9H" customClass="RobbieTableViewController" customModule="Robbie" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                                             <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -40,7 +40,7 @@
                             <outlet property="delegate" destination="DQH-uo-l9H" id="sgb-Bd-RpQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="What does Robbie like to eat?" id="iA0-BK-Paz"/>
+                    <navigationItem key="navigationItem" title="Robbie's food list" id="iA0-BK-Paz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cjM-Su-SRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,7 +61,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEm-CH-tKy">
                                 <rect key="frame" x="50" y="289" width="500" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
