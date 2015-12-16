@@ -15,6 +15,9 @@
 		D4AFC96F1C1B48A0007A2F9D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */; };
 		D4AFC9711C1B6BF4007A2F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */; };
 		D4AFC9731C1B7245007A2F9D /* FoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AFC9721C1B7245007A2F9D /* FoodList.swift */; };
+		D4B96DF71C21D316003B28AB /* AddFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B96DF61C21D316003B28AB /* AddFoodItemViewController.swift */; };
+		D4B96E001C220353003B28AB /* FoodDescriptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B96DFF1C220353003B28AB /* FoodDescriptionTextView.swift */; };
+		D4B96E021C220FC3003B28AB /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B96E011C220FC3003B28AB /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D4AFC9721C1B7245007A2F9D /* FoodList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodList.swift; sourceTree = "<group>"; };
+		D4B96DF61C21D316003B28AB /* AddFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodItemViewController.swift; sourceTree = "<group>"; };
+		D4B96DFF1C220353003B28AB /* FoodDescriptionTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDescriptionTextView.swift; sourceTree = "<group>"; };
+		D4B96E011C220FC3003B28AB /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				D45EC5381C19F73700D59277 /* Robbie */,
+				D4B96DFD1C2201F2003B28AB /* supporting */,
 				D45EC5371C19F73700D59277 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,16 +67,51 @@
 		D45EC5381C19F73700D59277 /* Robbie */ = {
 			isa = PBXGroup;
 			children = (
-				D45EC5391C19F73700D59277 /* AppDelegate.swift */,
-				D45EC5401C19F73800D59277 /* Assets.xcassets */,
+				D4B96DFC1C2201DA003B28AB /* models */,
+				D4B96DFB1C2201D1003B28AB /* controllers */,
+				D4B96DFA1C2201C8003B28AB /* ui */,
+			);
+			path = Robbie;
+			sourceTree = "<group>";
+		};
+		D4B96DFA1C2201C8003B28AB /* ui */ = {
+			isa = PBXGroup;
+			children = (
 				D45EC5421C19F73800D59277 /* LaunchScreen.storyboard */,
-				D45EC5451C19F73800D59277 /* Info.plist */,
-				D45EC54B1C19F8A900D59277 /* Food.swift */,
+				D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */,
+				D4B96DFF1C220353003B28AB /* FoodDescriptionTextView.swift */,
+				D4B96E011C220FC3003B28AB /* CustomTextField.swift */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		D4B96DFB1C2201D1003B28AB /* controllers */ = {
+			isa = PBXGroup;
+			children = (
 				D45EC54F1C19F9F600D59277 /* RobbieTableViewController.swift */,
 				D4AFC96E1C1B48A0007A2F9D /* DetailViewController.swift */,
-				D4AFC9701C1B6BF4007A2F9D /* Main.storyboard */,
+				D4B96DF61C21D316003B28AB /* AddFoodItemViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		D4B96DFC1C2201DA003B28AB /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D45EC54B1C19F8A900D59277 /* Food.swift */,
 				D4AFC9721C1B7245007A2F9D /* FoodList.swift */,
 			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		D4B96DFD1C2201F2003B28AB /* supporting */ = {
+			isa = PBXGroup;
+			children = (
+				D45EC5391C19F73700D59277 /* AppDelegate.swift */,
+				D45EC5451C19F73800D59277 /* Info.plist */,
+				D45EC5401C19F73800D59277 /* Assets.xcassets */,
+			);
+			name = supporting;
 			path = Robbie;
 			sourceTree = "<group>";
 		};
@@ -145,11 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B96E001C220353003B28AB /* FoodDescriptionTextView.swift in Sources */,
 				D45EC53A1C19F73700D59277 /* AppDelegate.swift in Sources */,
 				D45EC54C1C19F8A900D59277 /* Food.swift in Sources */,
 				D45EC5501C19F9F600D59277 /* RobbieTableViewController.swift in Sources */,
+				D4B96E021C220FC3003B28AB /* CustomTextField.swift in Sources */,
 				D4AFC96F1C1B48A0007A2F9D /* DetailViewController.swift in Sources */,
 				D4AFC9731C1B7245007A2F9D /* FoodList.swift in Sources */,
+				D4B96DF71C21D316003B28AB /* AddFoodItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,11 @@
 
 import UIKit
 
-class RobbieTableViewController: UITableViewController, UISearchResultsUpdating {
+class RobbieTableViewController: UITableViewController, UISearchResultsUpdating, ModalViewControllerDelegate {
     
+    //TODO: clean up print functions and useless code.
+    //TODO: prettify AddFoodItemViewController storyboard.
+    //TODO: Figure out why warning keeps showing up in console output.
     var foodList: FoodList?
     var resultSearchController = UISearchController()
     var index: Int?
@@ -17,10 +20,12 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TODO: Empty the list and let user add items to the list
         self.foodList = FoodList()
         
         self.tableView.reloadData()
         
+        //TODO: Clean up viewDidLoad
         //setup ResultSearchController
         self.resultSearchController = UISearchController(searchResultsController: nil)
         self.resultSearchController.searchResultsUpdater = self
@@ -40,7 +45,6 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         let rightBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("addNewFoodItem"))
         self.navigationItem.rightBarButtonItem = rightBarButton
-        //TODO: Set the rightBarButtonItem title
         
         self.tableView.reloadData()
     }
@@ -114,10 +118,19 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
         self.tableView.reloadData()
     }
     
+    //MARK: - Delegate method(s)
+    
+    func modalView(name: String, category: String, description: String) {
+        let newFoodItem = Food(category: category, name: name, description: description)
+        foodList!.foodList.append(newFoodItem)
+        self.tableView.reloadData()
+    }
+    
     //MARK: - Action methods
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailSegue" {
+            //TODO: Display back instead of the title shown in RobbieViewController
             if let dvc = segue.destinationViewController as? DetailViewController{
                 dvc.title = sender!.textLabel!!.text
                 if self.resultSearchController.active{
@@ -127,12 +140,18 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating 
                 }
             }
         }
+        
+        if segue.identifier == "addFoodItemSegue" {
+            if let dvc = segue.destinationViewController as? AddFoodItemViewController{
+                dvc.delegate = self
+            }
+        }
     }
     
     func addNewFoodItem(){
+        //TODO: Allow user to add multiple items before returning to RobbieViewController
         print("Adding new food item")
-        let food = Food(category: "something", name: "new", description: "blah blah")
-        foodList!.foodList.append(food)
+        performSegueWithIdentifier("addFoodItemSegue", sender: nil)
         self.tableView.reloadData()
     }
 }
