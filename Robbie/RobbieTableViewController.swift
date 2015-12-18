@@ -10,59 +10,32 @@ import UIKit
 
 class RobbieTableViewController: UITableViewController, UISearchResultsUpdating, ModalViewControllerDelegate {
     
-    //TODO: clean up print functions and useless code.
-    //TODO: prettify AddFoodItemViewController storyboard.
-    //TODO: Figure out why warning keeps showing up in console output.
     var foodList: FoodList?
-    var resultSearchController = UISearchController()
+    var resultSearchController: UISearchController!
     var index: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Empty the list and let user add items to the list
         self.foodList = FoodList()
         
-        self.tableView.reloadData()
-        
-        //TODO: Clean up viewDidLoad
         //setup ResultSearchController
         self.resultSearchController = UISearchController(searchResultsController: nil)
-        self.resultSearchController.searchResultsUpdater = self
-        self.resultSearchController.dimsBackgroundDuringPresentation = false
-        self.resultSearchController.searchBar.sizeToFit()
-        self.resultSearchController.searchBar.placeholder = "Search for Food"
-        let defaultColor = UIColor.init(red: 255/255, green: 153/255, blue: 51/255, alpha: 1)
-        self.resultSearchController.searchBar.barTintColor = UIColor.lightGrayColor()
-        let whiteColor = UIColor.whiteColor()
-        self.resultSearchController.searchBar.tintColor = whiteColor
+        self.configureSearchController()
         
         //setup UINavigationController
-        self.navigationController!.navigationBar.barTintColor = defaultColor
-        self.navigationController!.navigationBar.tintColor = whiteColor
-        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: whiteColor]
-        self.tableView.tableHeaderView = self.resultSearchController.searchBar
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        let rightBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("addNewFoodItem"))
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.configureNavigationController()
         
-        self.tableView.reloadData()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.reloadTableData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if self.resultSearchController.active{
             return self.foodList!.filteredContents.count
         } else{
@@ -115,7 +88,7 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating,
                 return false
             }
         }
-        self.tableView.reloadData()
+        self.reloadTableData()
     }
     
     //MARK: - Delegate method(s)
@@ -123,14 +96,13 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating,
     func modalView(name: String, category: String, description: String) {
         let newFoodItem = Food(category: category, name: name, description: description)
         foodList!.foodList.append(newFoodItem)
-        self.tableView.reloadData()
+        self.reloadTableData()
     }
     
     //MARK: - Action methods
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailSegue" {
-            //TODO: Display back instead of the title shown in RobbieViewController
             if let dvc = segue.destinationViewController as? DetailViewController{
                 dvc.title = sender!.textLabel!!.text
                 if self.resultSearchController.active{
@@ -138,6 +110,9 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating,
                 } else{
                     dvc.descriptionToDisplay = (self.foodList!.foodList[index!] as Food).description
                 }
+                
+                //TODO: After you segue into dvc, navigation title disappears.
+                navigationItem.title = nil
             }
         }
         
@@ -150,8 +125,32 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating,
     
     func addNewFoodItem(){
         //TODO: Allow user to add multiple items before returning to RobbieViewController
-        print("Adding new food item")
         performSegueWithIdentifier("addFoodItemSegue", sender: nil)
+    }
+    
+    //MARK: -Helper Methods
+    func configureSearchController(){
+        self.resultSearchController.searchResultsUpdater = self
+        self.resultSearchController.dimsBackgroundDuringPresentation = false
+        self.resultSearchController.searchBar.sizeToFit()
+        self.resultSearchController.searchBar.placeholder = "Search for Food"
+        self.resultSearchController.searchBar.barTintColor = UIColor.lightGrayColor()
+        self.resultSearchController.searchBar.tintColor = UIColor.whiteColor()
+    }
+    
+    func configureNavigationController(){
+        let defaultColor = UIColor.init(red: 255/255, green: 153/255, blue: 51/255, alpha: 1)
+        self.navigationController!.navigationBar.barTintColor = defaultColor
+        let whiteColor = UIColor.whiteColor()
+        self.navigationController!.navigationBar.tintColor = whiteColor
+        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: whiteColor]
+        self.tableView.tableHeaderView = self.resultSearchController.searchBar
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        let rightBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("addNewFoodItem"))
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    func reloadTableData(){
         self.tableView.reloadData()
     }
 }

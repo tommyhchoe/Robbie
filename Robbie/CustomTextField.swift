@@ -17,4 +17,12 @@ class CustomTextField: UITextField {
         self.layer.backgroundColor = UIColor.whiteColor().CGColor
         self.layer.borderWidth = 0.0
     }
+    
+    override func textRectForBounds(bounds: CGRect) -> CGRect {
+        return CGRectInset(bounds, 10.0, 10.0)
+    }
+    
+    override func editingRectForBounds(bounds: CGRect) -> CGRect {
+        return CGRectInset(bounds, 10.0, 10.0)
+    }
 }

@@ -28,23 +28,19 @@ class AddFoodItemViewController: UIViewController {
         self.view.backgroundColor = UIColor.init(red: 232/255, green: 232/255, blue: 238/255, alpha: 1.0)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func submitItem(sender: AnyObject) {
-        print("Adding item...")
         if let name = nameTextField.text,
                 category = categoryTextField.text,
                 description = descriptionTextView.text{
             
-                    self.dismissViewControllerAnimated(true){
-                        self.delegate?.modalView(name, category: category, description: description)
-                    }
-        } else{
-            print("You missed something!")
+            if name != "" && category != "" && description != ""{
+                self.dismissViewControllerAnimated(true){
+                    self.delegate?.modalView(name, category: category, description: description)
+                }
+            }else{
+                //TODO: Make a notification or a view pop out letting user know that all fields aren't entered in.
+                print("You didn't enter something in all the fields")
+            }
         }
     }
-
 }
