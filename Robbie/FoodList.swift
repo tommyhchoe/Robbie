@@ -12,7 +12,7 @@ class FoodList {
     
     var filteredContents = [Food]()
     
-    var foodList: [Food] = []
+    var foodList: [Food] = [
     
 /*
     //DEFAULT FOOD LIST
@@ -30,7 +30,7 @@ Food(category:"Chewy", name:"gummy worms", description: "Not his favorite, but h
 Food(category:"Chewy", name:"gummy fruits", description: "Ehh.. He doesn't really like those.") ,
 Food(category:"Chewy", name:"gum", description: "He's always chewing gum throughout the day.") ,
 Food(category:"Chewy", name:"Hi-chew", description: "He hates it. Seriously.")
-*/
+*/]
 
 }
 

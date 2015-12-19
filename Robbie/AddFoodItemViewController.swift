@@ -32,14 +32,22 @@ class AddFoodItemViewController: UIViewController {
         if let name = nameTextField.text,
                 category = categoryTextField.text,
                 description = descriptionTextView.text{
+                    
+            //TODO: Add another button action in successAlert to add more food items before dismissing the ViewController.
+            let errorAlert: UIAlertController = UIAlertController(title: "Error!", message: "You missed a field", preferredStyle: .Alert)
+            let successAlert: UIAlertController = UIAlertController(title: "Nice!", message: "You've added \(name) to the list", preferredStyle: .Alert)
+            let defaultErrorAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let defaultSuccessAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default)
+                {[unowned self] action in self.dismissViewControllerAnimated(true){
+                    self.delegate?.modalView(name, category: category, description: description)
+                }}
+            errorAlert.addAction(defaultErrorAction)
+            successAlert.addAction(defaultSuccessAction)
             
             if name != "" && category != "" && description != ""{
-                self.dismissViewControllerAnimated(true){
-                    self.delegate?.modalView(name, category: category, description: description)
-                }
+                self.presentViewController(successAlert, animated: false, completion: nil)
             }else{
-                //TODO: Make a notification or a view pop out letting user know that all fields aren't entered in.
-                print("You didn't enter something in all the fields")
+                self.presentViewController(errorAlert, animated: false, completion: nil)
             }
         }
     }

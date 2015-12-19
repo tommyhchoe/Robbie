@@ -8,16 +8,23 @@
 
 import UIKit
 
+protocol DetailViewControllerDelegate{
+    func detailView()
+}
+
 class DetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     var descriptionToDisplay = ""
+    
+    var delegate: DetailViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.descriptionLabel.text = descriptionToDisplay
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.delegate?.detailView()
     }
 }

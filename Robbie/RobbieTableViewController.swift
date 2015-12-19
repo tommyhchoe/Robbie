@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RobbieTableViewController: UITableViewController, UISearchResultsUpdating, ModalViewControllerDelegate {
+class RobbieTableViewController: UITableViewController, UISearchResultsUpdating, ModalViewControllerDelegate, DetailViewControllerDelegate {
     
     var foodList: FoodList?
     var resultSearchController: UISearchController!
@@ -99,19 +99,22 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating,
         self.reloadTableData()
     }
     
+    func detailView() {
+        self.navigationItem.title = "Robbie's food list"
+    }
+    
     //MARK: - Action methods
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailSegue" {
             if let dvc = segue.destinationViewController as? DetailViewController{
                 dvc.title = sender!.textLabel!!.text
+                dvc.delegate = self
                 if self.resultSearchController.active{
                     dvc.descriptionToDisplay = (self.foodList!.filteredContents[index!] as Food).description
                 } else{
                     dvc.descriptionToDisplay = (self.foodList!.foodList[index!] as Food).description
                 }
-                
-                //TODO: After you segue into dvc, navigation title disappears.
                 navigationItem.title = nil
             }
         }
@@ -124,7 +127,6 @@ class RobbieTableViewController: UITableViewController, UISearchResultsUpdating,
     }
     
     func addNewFoodItem(){
-        //TODO: Allow user to add multiple items before returning to RobbieViewController
         performSegueWithIdentifier("addFoodItemSegue", sender: nil)
     }
     
