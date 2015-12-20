@@ -37,12 +37,20 @@ class AddFoodItemViewController: UIViewController {
             let errorAlert: UIAlertController = UIAlertController(title: "Error!", message: "You missed a field", preferredStyle: .Alert)
             let successAlert: UIAlertController = UIAlertController(title: "Nice!", message: "You've added \(name) to the list", preferredStyle: .Alert)
             let defaultErrorAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            let defaultSuccessAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default)
+            let defaultSuccessAction: UIAlertAction = UIAlertAction(title: "Done", style: .Default)
                 {[unowned self] action in self.dismissViewControllerAnimated(true){
                     self.delegate?.modalView(name, category: category, description: description)
                 }}
+            let addMoreSuccessAction: UIAlertAction = UIAlertAction(title: "Add More", style: .Cancel)
+                {[unowned self] action in
+                    self.delegate?.modalView(name, category: category, description: description)
+                    self.nameTextField.text = ""
+                    self.categoryTextField.text = ""
+                    self.descriptionTextView.text = ""
+                }
             errorAlert.addAction(defaultErrorAction)
             successAlert.addAction(defaultSuccessAction)
+            successAlert.addAction(addMoreSuccessAction)
             
             if name != "" && category != "" && description != ""{
                 self.presentViewController(successAlert, animated: false, completion: nil)
