@@ -22,6 +22,9 @@ class AddFoodItemViewController: UIViewController {
     
     var delegate: ModalViewControllerDelegate?
     
+    var errorAlert: UIAlertController?
+    var successAlert: UIAlertController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,9 +36,8 @@ class AddFoodItemViewController: UIViewController {
                 category = categoryTextField.text,
                 description = descriptionTextView.text{
                     
-            //TODO: Add another button action in successAlert to add more food items before dismissing the ViewController.
-            let errorAlert: UIAlertController = UIAlertController(title: "Error!", message: "You missed a field", preferredStyle: .Alert)
-            let successAlert: UIAlertController = UIAlertController(title: "Nice!", message: "You've added \(name) to the list", preferredStyle: .Alert)
+            errorAlert = UIAlertController(title: "Error!", message: "You missed a field", preferredStyle: .Alert)
+            successAlert = UIAlertController(title: "Nice!", message: "You've added \(name) to the list", preferredStyle: .Alert)
             let defaultErrorAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             let defaultSuccessAction: UIAlertAction = UIAlertAction(title: "Done", style: .Default)
                 {[unowned self] action in self.dismissViewControllerAnimated(true){
@@ -48,14 +50,14 @@ class AddFoodItemViewController: UIViewController {
                     self.categoryTextField.text = ""
                     self.descriptionTextView.text = ""
                 }
-            errorAlert.addAction(defaultErrorAction)
-            successAlert.addAction(defaultSuccessAction)
-            successAlert.addAction(addMoreSuccessAction)
+            errorAlert!.addAction(defaultErrorAction)
+            successAlert!.addAction(defaultSuccessAction)
+            successAlert!.addAction(addMoreSuccessAction)
             
             if name != "" && category != "" && description != ""{
-                self.presentViewController(successAlert, animated: false, completion: nil)
+                self.presentViewController(successAlert!, animated: false, completion: nil)
             }else{
-                self.presentViewController(errorAlert, animated: false, completion: nil)
+                self.presentViewController(errorAlert!, animated: false, completion: nil)
             }
         }
     }
